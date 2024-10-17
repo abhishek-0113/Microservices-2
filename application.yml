@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: user-service
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+    
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost:5000/eureka
+      
+server:
+  port: 0
+  
+logging:
+  level:
+    httpclient:
+      wire: DEBUG
+      
+pivotal:
+  userservice:
+    name: user-service
+  tradeservice:
+    name: trade-service
+  
