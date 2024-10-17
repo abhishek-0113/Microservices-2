@@ -53,45 +53,45 @@ public class UserController {
 	@Autowired
 	private DiscoveryClient dc;
 	
-//	@Value("${pivotal.tradeservice.name}")
-//	protected String ts;
-//	
-//	@RequestMapping(value="/users/login",method=RequestMethod.POST)
-//	public String loginUser(@ModelAttribute("email")String email,@ModelAttribute("password")String password,
-//			HttpServletRequest request,HttpServletResponse response) throws IOException {
-//		
-//		System.out.println(ts);
-//		System.out.println("Entered the loginUser method in UserController");
-//		Investor uu = repo.findByEmail(email);
-//		request.getSession().setAttribute("user",uu);
-//		
-//		if(repo.findByEmail(email)!=null) {
-//			if(repo.findByEmail(email).getPassword().equals(password)) {
-//				
-//				//Discovery client
-//				List<ServiceInstance> instances = dc.getInstances(ts);
-//				System.out.println(instances.size());
-//				URI uri =instances.get(0).getUri();
-//				System.out.println("User-Service.loginUser.URI======"+ uri);
-//				String url = uri + "/Trade.html";
-//				System.out.println("====================================");
-//				System.out.println("User-Service.loginUser.URI======"+ uri);
-//				
-//				try {
-//					response.sendRedirect(url);
-//				}catch(Exception e){
-//					System.out.println("Error in dispatching");
-//				}
-//				return "error";
-//			}
-//			else {
-//				return "PasswordError"; //Logical view name
-//			}
-//		}
-//		else {
-//			return "Sorry";
-//		}
-//	}
+	@Value("${pivotal.tradeservice.name}")
+	protected String ts;
+	
+	@RequestMapping(value="/users/login",method=RequestMethod.POST)
+	public String loginUser(@ModelAttribute("email")String email,@ModelAttribute("password")String password,
+			HttpServletRequest request,HttpServletResponse response) throws IOException {
+		
+		System.out.println(ts);
+		System.out.println("Entered the loginUser method in UserController");
+		Investor uu = repo.findByEmail(email);
+		request.getSession().setAttribute("user",uu);
+		
+		if(repo.findByEmail(email)!=null) {
+			if(repo.findByEmail(email).getPassword().equals(password)) {
+				
+				//Discovery client
+				List<ServiceInstance> instances = dc.getInstances(ts);
+				System.out.println(instances.size());
+				URI uri =instances.get(0).getUri();
+				System.out.println("User-Service.loginUser.URI======"+ uri);
+				String url = uri + "/Trade.html";
+				System.out.println("====================================");
+				System.out.println("User-Service.loginUser.URI======"+ uri);
+				
+				try {
+					response.sendRedirect(url);
+				}catch(Exception e){
+					System.out.println("Error in dispatching");
+				}
+				return "error";
+			}
+			else {
+				return "PasswordError"; //Logical view name
+			}
+		}
+		else {
+			return "Sorry";
+		}
+	}
 
 
 }
